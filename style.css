@@ -1,0 +1,53 @@
+/* styles are arranged in order of execution */
+*{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.card a img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.8s; /*for .card a:hover img*/
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    max-width: 1160px; /*restrictions on the total width of the blocks to reduce the distance between them*/
+    margin: 50px auto; /*block in the center of the page with a top indent of 50 pixels*/
+}
+.cards .card:nth-child(1){
+    grid-column: 1/3;
+}
+.cards .card:nth-child(3){
+    grid-column: 1/3;
+    grid-row: 2/4; /*block occupies two rows*/
+}
+.cards .card:nth-child(7){
+    grid-column: 2/4;
+    height: 300px;  
+}
+.card{
+    overflow: hidden; /*clips everything that goes beyond the block 
+    necessary for .card a:hover img - transform: scale(1.2)*/
+    /* display: block; */
+    position: relative; /*necessary 
+    so that before is distributed only within one block*/
+}
+.card a::before{
+    content: ''; /*mandatory for before*/
+    background-color: rgba(53, 50, 50, 0.507);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.card a:hover::before{
+    background-color: transparent; /*background is removed on hover*/
+}
+.card a:hover img{
+    transform: scale(1.2);
+    transition: 0.8s;
+}
